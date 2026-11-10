@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KAIRO | Emergency Intelligence</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <a href="#home" class="brand">
+            <span class="brand-icon">✳</span>
+            KAIRO<span class="brand-dot">.</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#map-view">Command Map</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#incidents">Reports</a>
+        </nav>
+
+        <a href="#report" class="nav-cta">＋ Raise an Alert</a>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+
+            <div class="hero-grid"></div>
+
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="pulse-dot"></span>
+                    EMERGENCY INTELLIGENCE PLATFORM
+                </div>
+
+                <h1>
+                    When seconds<br>
+                    matter, <span>intelligence</span><br>
+                    acts.
+                </h1>
+
+                <p class="hero-description">
+                    One connected platform to report incidents,
+                    visualize emergencies and coordinate response
+                    information when every second counts.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#report" class="btn-primary">🚨 Report an Incident</a>
+                    <a href="#map-view" class="btn-secondary">Explore Command Map ↗</a>
+                </div>
+
+                <div class="hero-footnote">
+                    <span>✦</span> BUILT FOR A FASTER, MORE CONNECTED RESPONSE
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="hero-emblem">
+                    <span>✳</span>
+                </div>
+
+                <div class="floating-card card-top">
+                    <span class="mini-icon red-icon">!</span>
+                    <div>
+                        <strong>INCIDENT ALERT</strong>
+                        <small>Priority monitoring</small>
+                    </div>
+                </div>
+
+                <div class="floating-card card-bottom">
+                    <span class="mini-icon blue-icon">⌖</span>
+                    <div>
+                        <strong>LOCATION TRACKING</strong>
+                        <small>Chennai demo network</small>
+                    </div>
+                </div>
+
+                <div class="visual-caption">KAIRO / COMMAND SYSTEM 01</div>
+            </div>
+
+        </section>
+
+        <!-- TICKER -->
+        <div class="ticker">
+            <span>✳ INCIDENT AWARENESS</span>
+            <span>✳ SMART PRIORITIZATION</span>
+            <span>✳ LOCATION VISUALIZATION</span>
+            <span>✳ RESPONSE COORDINATION</span>
+        </div>
+
+        <!-- MAP -->
+        <section class="section map-section" id="map-view">
+
+            <div class="section-top">
+                <div>
+                    <p class="section-label">01 / SITUATIONAL AWARENESS</p>
+                    <h2>Command <span>Map.</span></h2>
+                    <p class="section-description">
+                        Explore simulated incidents across Chennai.
+                        Select a point on the map to choose a report location.
+                    </p>
+                </div>
+
+                <div class="live-badge">
+                    <span class="pulse-dot"></span>
+                    DEMO MODE
+                </div>
+            </div>
+
+            <div class="map-layout">
+                <div class="map-frame">
+                    <div class="map-toolbar">
+                        <span>⌖ CHENNAI / INCIDENT NETWORK</span>
+                        <span class="map-toolbar-right">INTERACTIVE MAP</span>
+                    </div>
+                    <div id="incidentMap"></div>
+                </div>
+
+                <aside class="map-panel">
+                    <p class="panel-kicker">MAP INTELLIGENCE</p>
+                    <h3>Incident Overview</h3>
+                    <p class="muted-text">Select a marker to inspect a simulated incident.</p>
+
+                    <div class="legend">
+                        <div><i class="legend-dot critical"></i> Critical</div>
+                        <div><i class="legend-dot high"></i> High</div>
+                        <div><i class="legend-dot medium"></i> Medium</div>
+                        <div><i class="legend-dot low"></i> Low</div>
+                    </div>
+
+                    <div class="map-detail" id="mapIncidentDetails">
+                        <span class="detail-icon">⌖</span>
+                        <p>Select an incident marker to see its details.</p>
+                    </div>
+
+                    <div class="map-selection">
+                        <p class="panel-kicker">REPORT LOCATION PICKER</p>
+                        <strong id="selectedLocation">No map location selected</strong>
+                        <small>Click anywhere on the map to select a location.</small>
+                    </div>
+                </aside>
+            </div>
+
+        </section>
+
+        <!-- DASHBOARD -->
+        <section class="section dashboard-section" id="dashboard">
+
+            <div class="section-top">
+                <div>
+                    <p class="section-label">02 / COMMAND ANALYTICS</p>
+                    <h2>Emergency <span>Overview.</span></h2>
+                    <p class="section-description">A snapshot of the incidents recorded in this demo.</p>
+                </div>
+                <div class="dashboard-stamp">KAIRO / 2026</div>
+            </div>
+
+            <div class="stats-grid">
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>TOTAL INCIDENTS</span>
+                        <span class="stat-icon">◈</span>
+                    </div>
+                    <strong class="stat-number" id="totalCount">0</strong>
+                    <small>All recorded reports</small>
+                </article>
+
+                <article class="stat-card red-stat">
+                    <div class="stat-top">
+                        <span>CRITICAL</span>
+                        <span class="stat-icon">⚠</span>
+                    </div>
+                    <strong class="stat-number" id="criticalCount">0</strong>
+                    <small>Critical priority reports</small>
+                </article>
+
+                <article class="stat-card blue-stat">
+                    <div class="stat-top">
+                        <span>PENDING</span>
+                        <span class="stat-icon">◷</span>
+                    </div>
+                    <strong class="stat-number" id="pendingCount">0</strong>
+                    <small>Awaiting review</small>
+                </article>
+
+                <article class="stat-card green-stat">
+                    <div class="stat-top">
+                        <span>RESOLVED</span>
+                        <span class="stat-icon">✓</span>
+                    </div>
+                    <strong class="stat-number" id="resolvedCount">0</strong>
+                    <small>Marked as resolved</small>
+                </article>
+
+            </div>
+
+            <div class="category-panel">
+                <div class="category-heading">
+                    <div>
+                        <p class="section-label">INCIDENT DISTRIBUTION</p>
+                        <h3>Category Breakdown</h3>
+                    </div>
+                    <span class="small-tag">DEMO ANALYTICS</span>
+                </div>
+
+                <div class="category-grid">
+                    <div class="category-item"><span>🔥</span><div><strong>Fire</strong><small id="fireCount">0 reports</small></div></div>
+                    <div class="category-item"><span>🚗</span><div><strong>Accidents</strong><small id="accidentCount">0 reports</small></div></div>
+                    <div class="category-item"><span>🏢</span><div><strong>Collapse</strong><small id="collapseCount">0 reports</small></div></div>
+                    <div class="category-item"><span>🚑</span><div><strong>Medical</strong><small id="medicalCount">0 reports</small></div></div>
+                    <div class="category-item"><span>🌊</span><div><strong>Floods</strong><small id="floodCount">0 reports</small></div></div>
+                    <div class="category-item"><span>⚡</span><div><strong>Other</strong><small id="otherCount">0 reports</small></div></div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- REPORT FORM -->
+        <section class="section report-section" id="report">
+
+            <div class="report-intro">
+                <p class="section-label">03 / REPORT AN INCIDENT</p>
+                <h2>Every report<br>starts with <span>awareness.</span></h2>
+                <p>Share the incident details below. For this prototype, reports are stored in your browser only.</p>
+
+                <div class="report-note">
+                    <span>✦</span>
+                    Accurate information helps create a clearer incident overview.
+                </div>
+            </div>
+
+            <form id="emergencyForm" class="report-form">
+
+                <div class="form-heading">
+                    <div>
+                        <p class="panel-kicker">NEW INCIDENT</p>
+                        <h3>Report Details</h3>
+                    </div>
+                    <span class="form-number">FORM / 001</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="incidentTitle">Incident title *</label>
+                        <input type="text" id="incidentTitle" placeholder="e.g. Road accident near..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Emergency category *</label>
+                        <select id="category" required>
+                            <option value="">Choose category</option>
+                            <option value="Fire Emergency">🔥 Fire Emergency</option>
+                            <option value="Road Accident">🚗 Road Accident</option>
+                            <option value="Building Collapse">🏢 Building Collapse</option>
+                            <option value="Medical Emergency">🚑 Medical Emergency</option>
+                            <option value="Flood">🌊 Flood</option>
+                            <option value="Other">⚡ Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Incident address / area *</label>
+                        <input type="text" id="location" placeholder="Enter area or landmark" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="peopleAffected">People affected *</label>
+                        <input type="number" id="peopleAffected" min="0" max="100000" placeholder="Estimated number" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">Incident description *</label>
+                        <textarea id="description" rows="4" placeholder="Describe the incident..." required></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="contact">Contact number (optional)</label>
+                        <input type="tel" id="contact" placeholder="Enter contact number">
+                    </div>
+
+                </div>
+
+                <div class="form-bottom">
+                    <p>✦ This is a demonstration platform, not an emergency dispatch service.</p>
+                    <button type="submit" class="btn-primary submit-button">Submit Report <span>↗</span></button>
+                </div>
+
+                <p id="formMessage" role="status"></p>
+
+            </form>
+
+        </section>
+
+        <!-- INCIDENT MANAGEMENT -->
+        <section class="section incidents-section" id="incidents">
+
+            <div class="section-top">
+                <div>
+                    <p class="section-label">04 / INCIDENT MANAGEMENT</p>
+                    <h2>Response <span>Registry.</span></h2>
+                    <p class="section-description">Review reports and update their demonstration status.</p>
+                </div>
+                <span class="small-tag">CONTROL PANEL</span>
+            </div>
+
+            <div class="incident-toolbar">
+                <input type="search" id="searchIncident" placeholder="⌕ Search incidents...">
+
+                <select id="filterStatus">
+                    <option value="All">All statuses</option>
+                    <option value="Reported">Reported</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+            </div>
+
+            <div id="incidentList" class="incident-list"></div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <a href="#home" class="brand"><span class="brand-icon">✳</span>KAIRO<span class="brand-dot">.</span></a>
+            <p>When seconds matter, intelligence acts.</p>
+        </div>
+
+        <div class="footer-right">
+            <p>CODE CLASH 2026 · HACKATHON PROTOTYPE</p>
+            <p class="disclaimer">Demo platform only. It does not contact emergency services or replace official responders.</p>
+            <strong>Real emergencies in India: Call 112.</strong>
+        </div>
+    </footer>
+
+</body>
+</html>
